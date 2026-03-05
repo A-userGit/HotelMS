@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: create
+      author: Aliaksandr Siamchonak
+      changes:
+        - createTable:
+            tableName: hotels_amenities
+            columns:
+              - column:
+                  name: hotel_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: amenity_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+        - addPrimaryKey:
+            columnNames: amenity_id, hotel_id
+            tableName: hotels_amenities
+        - addForeignKeyConstraint:
+            baseColumnNames: hotel_id
+            baseTableName: hotels_amenities
+            constraintName: fk_hotel_w_amenity
+            deferrable: false
+            initiallyDeferred: false
+            referencedColumnNames: id
+            referencedTableName: hotels
+        - addForeignKeyConstraint:
+            baseColumnNames: amenity_id
+            baseTableName: hotels_amenities
+            constraintName: fk_amenity_in_hotel
+            deferrable: false
+            initiallyDeferred: false
+            referencedColumnNames: id
+            referencedTableName: amenities

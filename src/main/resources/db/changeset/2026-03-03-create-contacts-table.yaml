@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: create
+      author: Aliaksandr Siamchonak
+      changes:
+        - createSequence:
+            sequenceName: contacts_seq
+            startValue: 1
+            incrementBy: 1
+        - createTable:
+            tableName: contacts
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: type
+                  type: varchar(255)
+              - column:
+                  name: contact_value
+                  type: varchar(255)
+              - column:
+                  name: hotel_id
+                  type: bigint
+        - addForeignKeyConstraint:
+            baseTableName: contacts
+            baseColumnNames: hotel_id
+            constraintName: fk_contact_hotel
+            referencedTableName: hotels
+            referencedColumnNames: id
+            onDelete: CASCADE
