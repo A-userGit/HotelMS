@@ -79,6 +79,7 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
+    @Transactional
     public void setAmenities(List<String> amenitiesNames,  long hotelId) {
         Optional<Hotel> hotelOptional = hotelRepository.findById(hotelId);
         if(hotelOptional.isEmpty()) {
