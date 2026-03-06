@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: create
+      author: Aliaksandr Siamchonak
+      changes:
+        - createSequence:
+            sequenceName: addresses_seq
+            startValue: 1
+            incrementBy: 1
+        - createTable:
+            tableName: addresses
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: city
+                  type: varchar(255)
+              - column:
+                  name: street
+                  type: varchar(255)
+              - column:
+                  name: postcode
+                  type: varchar(255)
+              - column:
+                  name: country
+                  type: varchar(255)
+              - column:
+                  name: house_number
+                  type: int
+              - column:
+                  name: hotel_id
+                  type: bigint
+        - addForeignKeyConstraint:
+            baseTableName: addresses
+            baseColumnNames: hotel_id
+            constraintName: fk_address_hotel
+            referencedTableName: hotels
+            referencedColumnNames: id
+            onDelete: CASCADE

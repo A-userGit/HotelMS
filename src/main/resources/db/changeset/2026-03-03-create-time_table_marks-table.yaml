@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: create
+      author: Aliaksandr Siamchonak
+      changes:
+        - createSequence:
+            sequenceName: t_t_marks_seq
+            startValue: 1
+            incrementBy: 1
+        - createTable:
+            tableName: time_table_marks
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: type
+                  type: varchar(255)
+              - column:
+                  name: time_mark
+                  type: time
+              - column:
+                  name: required
+                  type: boolean
+              - column:
+                  name: hotel_id
+                  type: bigint
+        - addForeignKeyConstraint:
+            baseTableName: time_table_marks
+            baseColumnNames: hotel_id
+            constraintName: fk_t_t_mark_hotel
+            referencedTableName: hotels
+            referencedColumnNames: id
+            onDelete: CASCADE

@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - include:
+      file: db/changeset/2026-03-03-create-hotels-table.yaml
+  - include:
+      file: db/changeset/2026-03-03-create-amenities-table.yaml
+  - include:
+      file: db/changeset/2026-03-03-create-contacts-table.yaml
+  - include:
+      file: db/changeset/2026-03-03-create-addresses-table.yaml
+  - include:
+      file: db/changeset/2026-03-03-create-time_table_marks-table.yaml
+  - include:
+      file: db/changeset/2026-03-03-create-hotels_amenities-table.yaml
